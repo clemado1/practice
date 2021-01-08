@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Router from "Components/Router";
-import Header from "./Header/Header";
+import GlobalStyled from "./GlobalStyled";
 
 function App() {
   return (
     <>
-      <Header />
       <Router />
+      <GlobalStyled />
     </>
   );
 }
