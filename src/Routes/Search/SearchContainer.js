@@ -8,14 +8,25 @@ export default class extends React.Component {
     tvResults: null,
     searchTerm: "",
     error: null,
-    loading: true
+    loading: false
   };
   
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     const { searchTerm } = this.state;
     if (searchTerm !== "") {
       this.searchByTerm();
     }
+  }
+
+  updateTerm = (event) => {
+    const {
+      target: {value}
+    } = event;
+
+    this.setState({
+      searchTerm: value
+    });
   }
 
   searchByTerm = async () => {
@@ -33,7 +44,7 @@ export default class extends React.Component {
       });
     } catch (error) {
       this.setState({
-        error: "Can't fine."
+        error: "Can't find."
       });
     } finally {
       this.setState({
@@ -52,6 +63,7 @@ export default class extends React.Component {
         error={error}
         loading={loading}
         handleSubmit={this.handleSubmit}
+        updateTerm={this.updateTerm}
       />
     );
   }
